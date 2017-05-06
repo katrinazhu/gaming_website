@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class PersonnageController extends Controller
 {
-
     /**
      * @Route("/personnage", name="personnage")
      */
@@ -76,23 +75,5 @@ class PersonnageController extends Controller
         );
     }
 }
-
-// creates new Personnages
-        // $p1 = new Personnage();
-        // $p1->setName('Hannah');
-        // $p1->setUserID(0);
-
-        // $p2 = new Personnage();
-        // $p2->setName('Katrina');
-        // $p2->setUserID(0);
-
-        // $em = $this->getDoctrine()->getManager();
-
-        // // tells Doctrine you want to (eventually) save the Product (no queries yet)
-        // $em->persist($p1);
-        // $em->persist($p2);
-
-        // // actually executes the queries (i.e. the INSERT query)
-        // $em->flush();
 
 ?>

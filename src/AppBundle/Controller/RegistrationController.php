@@ -36,7 +36,7 @@ class RegistrationController extends Controller
             $session = $request->getSession();
             // // store an attribute for reuse during a later user request
             $session->set('name', $user->getUsername());
-            return $this->redirectToRoute('personnages');
+            return $this->redirectToRoute('personnage');
         }
 
         return $this->render(
