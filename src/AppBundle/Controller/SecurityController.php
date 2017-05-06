@@ -1,6 +1,6 @@
 <?php
 namespace AppBundle\Controller;
-
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,17 +13,19 @@ class SecurityController extends Controller
     public function loginAction(Request $request)
     {
 	    $authenticationUtils = $this->get('security.authentication_utils');
-
 	    // get the login error if there is one
 	    $error = $authenticationUtils->getLastAuthenticationError();
-
-	    // last username entered by the user
 	    $lastUsername = $authenticationUtils->getLastUsername();
-
-	    return $this->render('security/login.html.twig', array(
+	    $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $username=$usr->getUsername();
+        $session = $request->getSession();
+        // // store an attribute for reuse during a later user request
+        $session->set('name', $username);
+        return $this->render('security/login.html.twig', array(
 	        'last_username' => $lastUsername,
 	        'error'         => $error,
 	    ));
+	    
     }
 }
 ?>

@@ -15,11 +15,11 @@ class __TwigTemplate_ad0b2ea34cfe4dfe446dc7597f97689c0f933c3a40f37b75cdbe314f9e5
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_aa8fa9b0ae0b8d4802fd4c58e5f416b830f30d2ac8372120d14fee19d3188930 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_aa8fa9b0ae0b8d4802fd4c58e5f416b830f30d2ac8372120d14fee19d3188930->enter($__internal_aa8fa9b0ae0b8d4802fd4c58e5f416b830f30d2ac8372120d14fee19d3188930_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "security/login.html.twig"));
+        $__internal_600a81a91427147787c5c82c4a8a52118c1d4848707b29c67032d848308385a9 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_600a81a91427147787c5c82c4a8a52118c1d4848707b29c67032d848308385a9->enter($__internal_600a81a91427147787c5c82c4a8a52118c1d4848707b29c67032d848308385a9_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "security/login.html.twig"));
 
-        $__internal_75aebf684ca5ab31076f77c8b960168d11ab729b477345ad0d0569ce05ae5d4f = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_75aebf684ca5ab31076f77c8b960168d11ab729b477345ad0d0569ce05ae5d4f->enter($__internal_75aebf684ca5ab31076f77c8b960168d11ab729b477345ad0d0569ce05ae5d4f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "security/login.html.twig"));
+        $__internal_382e7910eb0e78132e15c37b191b2a1dc3a48e03d38d1f24efe7de16e9e7ddf6 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_382e7910eb0e78132e15c37b191b2a1dc3a48e03d38d1f24efe7de16e9e7ddf6->enter($__internal_382e7910eb0e78132e15c37b191b2a1dc3a48e03d38d1f24efe7de16e9e7ddf6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "security/login.html.twig"));
 
         // line 1
         echo "<!DOCTYPE html>
@@ -152,18 +152,15 @@ class __TwigTemplate_ad0b2ea34cfe4dfe446dc7597f97689c0f933c3a40f37b75cdbe314f9e5
         ";
         }
         // line 124
-        echo "        <form class=\"form-basic\" action=\"";
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("login");
-        echo "\" method=\"post\">
+        echo "        <form class=\"form-basic\" method=\"post\">
             <div class=\"form-title-row\">
                 <h1>Log In</h1>
             </div>
-
             <div class=\"form-row\">
                 <label for=\"username\">
                     <span>Username</span>
                     <input type=\"text\" id=\"username\" name=\"_username\" value=\"";
-        // line 132
+        // line 131
         echo twig_escape_filter($this->env, (isset($context["last_username"]) ? $context["last_username"] : $this->getContext($context, "last_username")), "html", null, true);
         echo "\" />
                 </label>
@@ -175,15 +172,13 @@ class __TwigTemplate_ad0b2ea34cfe4dfe446dc7597f97689c0f933c3a40f37b75cdbe314f9e5
                     <input type=\"password\" id=\"password\" name=\"_password\" />
                 </label>
             </div>
-
-            ";
-        // line 148
-        echo "            <div class=\"form-row\">
+            <input type=\"hidden\" name=\"_target_path\" value=\"personnages\" />
+            <div class=\"form-row\">
                 <button type=\"submit\">Log In</button>
             </div>
         </form>
         <form class=\"form-basic\" action=\" ";
-        // line 152
+        // line 146
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("register");
         echo " \" method=\"post\">
                 <button class=\"asText\" type=\"submit\">Don't have an account?</button>
@@ -192,10 +187,10 @@ class __TwigTemplate_ad0b2ea34cfe4dfe446dc7597f97689c0f933c3a40f37b75cdbe314f9e5
 </body>
 </html>";
         
-        $__internal_aa8fa9b0ae0b8d4802fd4c58e5f416b830f30d2ac8372120d14fee19d3188930->leave($__internal_aa8fa9b0ae0b8d4802fd4c58e5f416b830f30d2ac8372120d14fee19d3188930_prof);
+        $__internal_600a81a91427147787c5c82c4a8a52118c1d4848707b29c67032d848308385a9->leave($__internal_600a81a91427147787c5c82c4a8a52118c1d4848707b29c67032d848308385a9_prof);
 
         
-        $__internal_75aebf684ca5ab31076f77c8b960168d11ab729b477345ad0d0569ce05ae5d4f->leave($__internal_75aebf684ca5ab31076f77c8b960168d11ab729b477345ad0d0569ce05ae5d4f_prof);
+        $__internal_382e7910eb0e78132e15c37b191b2a1dc3a48e03d38d1f24efe7de16e9e7ddf6->leave($__internal_382e7910eb0e78132e15c37b191b2a1dc3a48e03d38d1f24efe7de16e9e7ddf6_prof);
 
     }
 
@@ -211,7 +206,7 @@ class __TwigTemplate_ad0b2ea34cfe4dfe446dc7597f97689c0f933c3a40f37b75cdbe314f9e5
 
     public function getDebugInfo()
     {
-        return array (  187 => 152,  181 => 148,  167 => 132,  155 => 124,  149 => 122,  147 => 121,  25 => 1,);
+        return array (  182 => 146,  164 => 131,  155 => 124,  149 => 122,  147 => 121,  25 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -347,11 +342,10 @@ class __TwigTemplate_ad0b2ea34cfe4dfe446dc7597f97689c0f933c3a40f37b75cdbe314f9e5
         {% if error %}
             <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
-        <form class=\"form-basic\" action=\"{{ path('login') }}\" method=\"post\">
+        <form class=\"form-basic\" method=\"post\">
             <div class=\"form-title-row\">
                 <h1>Log In</h1>
             </div>
-
             <div class=\"form-row\">
                 <label for=\"username\">
                     <span>Username</span>
@@ -365,12 +359,7 @@ class __TwigTemplate_ad0b2ea34cfe4dfe446dc7597f97689c0f933c3a40f37b75cdbe314f9e5
                     <input type=\"password\" id=\"password\" name=\"_password\" />
                 </label>
             </div>
-
-            {#
-                If you want to control the URL the user
-                is redirected to on success (more details below)
-                <input type=\"hidden\" name=\"_target_path\" value=\"/account\" />
-            #}
+            <input type=\"hidden\" name=\"_target_path\" value=\"personnages\" />
             <div class=\"form-row\">
                 <button type=\"submit\">Log In</button>
             </div>

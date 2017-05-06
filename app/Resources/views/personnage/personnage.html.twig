@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+    <div id="past-personnages">
+        {% for person in personnages %}
+            <a href="{{ path('new_personnage') }}#home">{{ person->getName() }}</a>
+    </div>
+    <div id="create-new">
+        <form class="form-basic" action=" {{ path('personnage') }} " method="post">
+            <button class="asText" type="submit">Create a new personnage</button>
+        </form>
+    </div>
+</body>
+</html>

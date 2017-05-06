@@ -8,12 +8,7 @@ security:
             entity:
                 class: AppBundle:User
                 property: username
-        in_memory:
-            memory: 
-                users:
-                    ryan:
-                        password: ryanpass
-                        roles: 'ROLE_USER'
+
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
         AppBundle\Entity\User:
@@ -37,8 +32,10 @@ security:
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             form_login: 
-                login_path: /login
-                check_path: /login
+                login_path: personnages
+                check_path: personnages
+                target_path_parameter: personnages
+                failure_path_parameter: login
     # access_control:
     #     # require ROLE_ADMIN for /admin*
     #     - { path: ^/, roles: ROLE_ADMIN }

@@ -49,8 +49,6 @@ class User implements UserInterface
      */
     private $password;
 
-    // other properties and methods
-
     public function getEmail()
     {
         return $this->email;
