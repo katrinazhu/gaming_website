@@ -7,6 +7,8 @@ use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 
 class RegistrationController extends Controller
 {
@@ -27,16 +29,14 @@ class RegistrationController extends Controller
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
-
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-
-            // ... do any other work - like sending them an email, etc
-            // maybe set a "flash" success message for the user
-
-            return $this->redirectToRoute('login');
+            $session = $request->getSession();
+            // // store an attribute for reuse during a later user request
+            $session->set('name', $user->getUsername());
+            return $this->redirectToRoute('personnages');
         }
 
         return $this->render(

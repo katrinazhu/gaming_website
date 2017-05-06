@@ -19,7 +19,9 @@ class PersonnageController extends Controller
             ->getRepository('AppBundle:Personnage');
 
         // find personnages with given username
-        $personnages = $repository->findBy(array('username' => 'hqin')); //TODO
+        $session = $request->getSession();
+        $username = $session->get('name');
+        $personnages = $repository->findBy(array('username' => $username)); //TODO
 
         // render page displaying past personnages + option to create a new one
         return $this->render('personnage/personnage.html.twig',
@@ -92,5 +94,3 @@ class PersonnageController extends Controller
         // $em->flush();
 
 ?>
-
-
