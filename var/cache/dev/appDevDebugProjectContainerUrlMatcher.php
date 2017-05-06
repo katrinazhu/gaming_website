@@ -114,6 +114,19 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
+        if (0 === strpos($pathinfo, '/personnage')) {
+            // personnage
+            if ($pathinfo === '/personnage') {
+                return array (  '_controller' => 'AppBundle\\Controller\\PersonnageController::chooseAction',  '_route' => 'personnage',);
+            }
+
+            // personnage_new
+            if ($pathinfo === '/personnage/new') {
+                return array (  '_controller' => 'AppBundle\\Controller\\PersonnageController::newAction',  '_route' => 'personnage_new',);
+            }
+
+        }
+
         // register
         if ($pathinfo === '/register') {
             return array (  '_controller' => 'AppBundle\\Controller\\RegistrationController::registerAction',  '_route' => 'register',);

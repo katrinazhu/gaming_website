@@ -1,0 +1,24 @@
+{# app/Resources/views/registration/register.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}" />
+</head>
+<body>
+    <div class="form-basic">
+        <div class="form-title-row">
+            <h1>Create New Personnage</h1>
+        </div>
+        {{ form_start(form) }}
+            <div class="form-row">
+                {{ form_row(form.name) }}
+            </div>
+            <div class="form-row">
+                {{ form_row(form.avatar) }}
+            </div>
+            <button class="register" type="submit">Register</button>
+        {{ form_end(form) }}
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{# app/Resources/views/personnage/personnage.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/personnage.css') }}" />
+</head>
+<body>
+    <div class="header-wrapper">
+        <h1>Choose a Personnage</h1>
+    </div>
+    <div class="main-wrapper">
+        <div id="past-personnages" class="row">
+            {% for person in personnages %}
+                {# TODO: update path #}
+                <div class="person col-md-3" align="center">
+                    <img class="avatar-img" src="{{ asset('uploads/avatars/' ~ person.avatar) }}" alt="avatar">
+                    <br>
+                    <a href="{{ path('personnage_new') }}" class="name"> {{ person.name }} </a>
+                    <br><br>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="create-new">
+            <form class="form-basic" action=" {{ path('personnage_new') }} " method="post">
+                <button class="asText" type="submit">Create a new personnage</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
