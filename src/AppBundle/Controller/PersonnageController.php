@@ -16,9 +16,13 @@ class PersonnageController extends Controller
         // initialize db repository
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Personnage');
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $username=$usr->getUsername();
+        $session = $request->getSession();
+        // // store an attribute for reuse during a later user request
+        $session->set('name', $username);
 
         // find personnages with given username
-        $session = $request->getSession();
         $username = $session->get('name');
         $personnages = $repository->findBy(array('username' => $username));
 

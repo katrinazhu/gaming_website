@@ -23,13 +23,7 @@ class SecurityController extends Controller
             echo '<script>console.log("no error")</script>';
         }
 
-	    $usr= $this->get('security.token_storage')->getToken()->getUser();
-        if (!is_string($usr)) {
-            $username=$usr->getUsername();
-            $session = $request->getSession();
-            // // store an attribute for reuse during a later user request
-            $session->set('name', $username);
-        }
+
         return $this->render('security/login.html.twig', array(
 	        'last_username' => $lastUsername,
 	        'error'         => $error,

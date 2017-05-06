@@ -38,6 +38,3 @@ security:
                 path:   /logout
                 target: /
 
-    # access_control:
-    #     # require ROLE_ADMIN for /admin*
-    #     - { path: ^/, roles: ROLE_ADMIN }
