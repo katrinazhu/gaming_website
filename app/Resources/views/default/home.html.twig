@@ -1,0 +1,64 @@
+{# app/Resources/views/personnage/personnage.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}" />
+</head>
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="#">Crops Calendar</a>
+        <a href="#news">Buy Crops</a>
+        <a href="#contact">Statistics</a>
+        <a href="{{ path('personnage') }}">Personnages</a>
+    </div>
+
+    <div id="past-personnages">
+        <h4>Ready to Harvest</h4>
+        <div class="row">
+            <div class="col-xs-6">
+                <ul>Type</ul>
+            </div>
+            <div class="col-xs-6">
+                <ul>Time Left Until Harvest</ul>
+            </div>
+        </div>
+        {% for crop in crops %}
+            {% if crop.timeLeft <= 0 %}
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ul>{{crop.type}}</ul>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <h4>Growing Crops</h4>
+        <div class="row">
+            <div class="col-xs-6">
+                <ul>Type</ul>
+            </div>
+            <div class="col-xs-6">
+                <ul>Time Left Until Harvest</ul>
+            </div>
+        </div>
+        {% for crop in crops %}
+            {% if crop.timeLeft > 0 %}
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ul>{{crop.type}}</ul>
+                    </div>
+                    <div class="col-xs-6">
+                        <ul>{{crop.dateBought}}</ul>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <footer>
+        <a href="{{ path('logout') }}">Logout</a>
+    </footer>
+</body>
+</html>
