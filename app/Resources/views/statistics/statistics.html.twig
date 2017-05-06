@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/statistics.css') }}" />
+    </head>
+    <body>
+        <div class='main-body'>
+            <header>
+                <a href="{{ path('logout') }}">Logout</a>
+            </header>
+            <div class="form-title-row">
+                <h1>Statistics</h1>
+            </div>
+            <div class='label'>
+            Total Number of Personnages: 
+            </div>
+            {{numPersonnages}}
+            <br>
+            <div class='label'>
+            Total Number of Users: 
+            </div>
+            {{numUsers}}
+            <br>
+            <div class='label'>
+            Personnage with the highest ID:
+            </div>
+            {{personnage}}
+            <div class='label'>
+             with an ID of 
+            </div>
+            {{id}}
+        
+    </div>
+    </body>
+</html>

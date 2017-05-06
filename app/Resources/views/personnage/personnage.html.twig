@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/personnage.css') }}" />
 </head>
 <body>
+    <header>
+        <a href="{{ path('logout') }}">Logout</a>
+    </header>
     <div class="header-wrapper">
         <h1>Choose a Personnage</h1>
     </div>
@@ -29,8 +32,6 @@
         </div>
     </div>
 
-    <footer>
-        <a href="{{ path('logout') }}">Logout</a>
-    </footer>
+
 </body>
 </html>

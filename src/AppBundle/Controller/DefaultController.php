@@ -13,7 +13,8 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      */
     public function indexAction () {
-        return $this->redirectToRoute('login');
+    	//return $this->redirectToRoute('login');
+        return $this->redirectToRoute('statistics');
     }
 }
 ?>

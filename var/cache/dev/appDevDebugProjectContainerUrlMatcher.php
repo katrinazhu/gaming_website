@@ -132,17 +132,19 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\RegistrationController::registerAction',  '_route' => 'register',);
         }
 
-        if (0 === strpos($pathinfo, '/log')) {
-            // login
-            if ($pathinfo === '/login') {
-                return array (  '_controller' => 'AppBundle\\Controller\\SecurityController::loginAction',  '_route' => 'login',);
-            }
+        // login
+        if ($pathinfo === '/login') {
+            return array (  '_controller' => 'AppBundle\\Controller\\SecurityController::loginAction',  '_route' => 'login',);
+        }
 
-            // logout
-            if ($pathinfo === '/logout') {
-                return array('_route' => 'logout');
-            }
+        // statistics
+        if ($pathinfo === '/statistics') {
+            return array (  '_controller' => 'AppBundle\\Controller\\StatisticsController::statisticsAction',  '_route' => 'statistics',);
+        }
 
+        // logout
+        if ($pathinfo === '/logout') {
+            return array('_route' => 'logout');
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
