@@ -114,7 +114,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
-<<<<<<< HEAD
         if (0 === strpos($pathinfo, '/personnage')) {
             // personnage
             if ($pathinfo === '/personnage') {
@@ -126,11 +125,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array (  '_controller' => 'AppBundle\\Controller\\PersonnageController::newAction',  '_route' => 'personnage_new',);
             }
 
-=======
-        // personnages
-        if ($pathinfo === '/personnages') {
-            return array (  '_controller' => 'AppBundle\\Controller\\PersonnageController::choosePersonAction',  '_route' => 'personnages',);
->>>>>>> 363fdd3971ec41cbb00b5065003b3288a787b8b0
         }
 
         // register

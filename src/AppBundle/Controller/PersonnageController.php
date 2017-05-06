@@ -21,7 +21,7 @@ class PersonnageController extends Controller
         // find personnages with given username
         $session = $request->getSession();
         $username = $session->get('name');
-        $personnages = $repository->findBy(array('username' => $username)); //TODO
+        $personnages = $repository->findBy(array('username' => $username));
 
         // render page displaying past personnages + option to create a new one
         return $this->render('personnage/personnage.html.twig',
@@ -40,8 +40,10 @@ class PersonnageController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // 3) TODO: save the username
-            $personnage->setUsername('hqin');
+            // 3) save the username
+            $session = $request->getSession();
+            $username = $session->get('name');
+            $personnage->setUsername($username);
 
             // 4) deal with uploaded avatar file
 
