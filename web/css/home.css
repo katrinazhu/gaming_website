@@ -5,8 +5,10 @@
 }
 
 /* Style the links inside the navigation bar */
-.topnav a {
+li {
     float: left;
+}
+.topnav a {
     display: block;
     color: #f2f2f2;
     text-align: center;

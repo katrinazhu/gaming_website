@@ -8,10 +8,11 @@
 </head>
 <body>
     <div class="topnav" id="myTopnav">
-        <a href="#">Crops Calendar</a>
-        <a href="#news">Buy Crops</a>
-        <a href="{{ path('statistics') }} ">Statistics</a>
-        <a href="{{ path('personnage') }}">Personnages</a>
+        <a href="#" style="float:left">Crops Calendar</a>
+        <a href="#news" style="float:left">Buy Crops</a>
+        <a href="{{ path('statistics') }} " style="float:left">Statistics</a>
+        <a href="{{ path('personnage') }}" style="float:left">Personnages</a>
+        <a href="{{ path('logout') }}" style="float:right">Logout</a>
     </div>
 
     <div id="past-personnages">
@@ -56,9 +57,5 @@
             {% endif %}
         {% endfor %}
     </div>
-
-    <footer>
-        <a href="{{ path('logout') }}">Logout</a>
-    </footer>
 </body>
 </html>
