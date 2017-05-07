@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/statistics.css') }}" />
-    </head>
-    <body>
-        <div class='main-body'>
-            <header>
-                <a href="{{ path('logout') }}">Logout</a>
-            </header>
-            <div class="form-title-row">
-                <h1>Statistics</h1>
-            </div>
-            <div class='label'>
-            Total Number of Personnages: 
-            </div>
-            {{numPersonnages}}
-            <br>
-            <div class='label'>
-            Total Number of Users: 
-            </div>
-            {{numUsers}}
-            <br>
-            <div class='label'>
-            Personnage with the highest ID:
-            </div>
-            {{personnage}}
-            <div class='label'>
-             with an ID of 
-            </div>
-            {{id}}
-        
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/statistics.css') }}" />
+</head>
+<body>
+    <!-- navbar -->
+    <div class="topnav" id="myTopnav">
+        <a href="/home?name={{personnage}}" style="float:left">Crops Calendar</a>
+        <a href="#news" style="float:left">Buy Crops</a>
+        <a href="#" style="float:left">Statistics</a>
+        <a href="{{ path('personnage') }}" style="float:left">Personnages</a>
+        <a href="{{ path('logout') }}" style="float:right">Logout</a>
     </div>
-    </body>
+
+    <!-- statistics -->
+    <div class='main-body'>
+        <div class="form-title-row">
+            <h1>Statistics</h1>
+        </div>
+
+        <div class='label'>Total Number of Personnages:</div>
+        {{numPersonnages}}
+
+        <br>
+
+        <div class='label'>Total Number of Users: </div>
+        {{numUsers}}
+
+        <br>
+
+        <div class='label'>Personnage with the highest ID:</div>
+        {{personnage}}
+
+        <div class='label'>with an ID of </div>
+        {{id}}
+    </div>
+</body>
 </html>
