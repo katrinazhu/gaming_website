@@ -19,60 +19,51 @@
 
     <div class="main-wrapper">
         <h4>Ready to Harvest</h4>
-        <div class="row">
-            <div class="col-xs-6">
-                <ul><b>Type</b></ul>
-            </div>
+        <h5> In your bank: {{money}} euro(s)</h5>
+        <div class="list-wrapper">
+            {% for crop in crops %}
+                {% if crop.now > crop.harvestDate %}
+                    <div class="row">
+                        <div class="col-xs-6" style="text-align:right;">
+                            <form class="form-basic" action="/home/harvest?name={{personnage}}&cropid={{crop.id}}" method="post">
+                                <button class="asText" type="submit">Harvest</button>
+                            </form>
+                        </div>
+                        <div class="col-xs-6">
+                            <ul>{{crop.type}}</ul>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
-        {% for crop in crops %}
-            {% if crop.now > crop.harvestDate %}
-                <div class="row">
-                    <div class="col-xs-6">
-                        <ul>{{crop.type}}</ul>
-                    </div>
-                    <div class="col-xs-6">
-                        <form class="form-basic" action="/home/harvest?name={{personnage}}&cropid={{crop.id}}" method="post">
-                            <button class="asText" type="submit">Harvest</button>
-                        </form>
-                    </div>
-                    <!-- <div class="col-xs-6">
-                        <ul>{{crop.dateBought|date('Y-m-d H:i:s')}}</ul>
-                        <ul>{{crop.harvestDate|date('Y-m-d H:i:s')}}</ul>
-                    </div> -->
-                </div>
-            {% endif %}
-        {% endfor %}
-
-        <br><br>
 
         <h4>Growing Crops</h4>
-        <div class="row">
-            <div class="col-xs-6">
-                <ul><b>Type</b></ul>
-            </div>
-            <div class="col-xs-6">
-                <ul><b>Time Left Until Harvest</b></ul>
-            </div>
-        </div>
-        {% for crop in crops %}
-            {% if crop.now < crop.harvestDate %}
-                <div class="row">
-                    <div class="col-xs-6">
-                        <ul>{{crop.type}}</ul>
-                    </div>
-                    <div class="col-xs-6">
-                        <ul>{{crop.timeLeft|date("%h hours, %i minutes, %s seconds ")}}</ul>
-                    </div>
+        <div class="list-wrapper">
+            <div class="row">
+                <div class="col-xs-6">
+                    <ul><b>Type</b></ul>
                 </div>
-            {% endif %}
-        {% endfor %}
-
-        <br><br>
-
-        <footer>
-            You are logged in as: {{username}}<br>
-            Your personnage is: {{personnage}}
-        </footer>
+                <div class="col-xs-6">
+                    <ul><b>Time Left Until Harvest</b></ul>
+                </div>
+            </div>
+            {% for crop in crops %}
+                {% if crop.now < crop.harvestDate %}
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <ul>{{crop.type}}</ul>
+                        </div>
+                        <div class="col-xs-6">
+                            <ul>{{crop.timeLeft|date("%h hours, %i minutes, %s seconds ")}}</ul>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
+    <footer>
+        You are logged in as: {{username}}<br>
+        Your personnage is: {{personnage}}
+    </footer>
 </body>
 </html>
