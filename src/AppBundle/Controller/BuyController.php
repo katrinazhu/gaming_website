@@ -39,16 +39,14 @@ class BuyController extends Controller
         }
         // 1) build the form
         $crop = new Crop();
-        // 2) handle the submit (will only happen on POST)
-            echo '<script>console.log("submitting")</script>';
-            // 4) deal with uploaded avatar file
-            //date_default_timezone_set('France/Paris');
+            //TO DO: check if the personnage has enough money
             $now = new \DateTime("now");
             $crop->setType('wheat');
             $crop->setDateBought($now);
             $session = $request->getSession();
             $personnageID = $session -> get('id');
             $crop->setPersonnageID($personnageID);
+            //TO DO: decrease the amount of money the person has
             // 5) save the User!
             $em = $this->getDoctrine()->getManager();
             $em->persist($crop);

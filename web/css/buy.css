@@ -2,19 +2,44 @@
 html{
     background-color: #f3f3f3;
 }
-
 .form-basic{
-    max-width: 640px;
+    max-width: 870px;
     margin: 0 auto;
     padding: 55px;
     box-sizing: border-box;
-
     background-color:  #ffffff;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-
-    font: bold 14px sans-serif;
+    font: 12px sans-serif;
     text-align: center;
 }
+#first {
+    width: 150px;
+    float: left;
+    height: 300px;
+}
+#second {
+    width: 150px;
+    float: left;
+    height: 300px;
+}
+#third {
+    width: 150px;
+    float: left;
+    height: 300px;
+}
+#fourth {
+    width: 150px;
+    float: left;
+    height: 300px;
+}
+#fifth {
+    width: 150px;
+    float: left;
+    height: 300px;
+}
+#clear {
+    clear: both;
+}
+
 
 .form-basic .form-row{
     text-align: center;
@@ -26,45 +51,35 @@ html{
     margin-bottom: 55px;
 }
 
-/* The form title */
-
-.form-basic h1{
+.form-basic .form-title-row h1{
     display: inline-block;
     box-sizing: border-box;
     color:  #4c565e;
+    font: bold;
     font-size: 24px;
     padding: 0 10px 15px;
     border-bottom: 2px solid #6caee0;
     margin: 0;
 }
-.form-basic .form-row label {
-    display: inline-block;
-    box-sizing: border-box;
-    color: #5F5F5F;
-    width: 100%;
-    vertical-align: top;
-    text-align: center;
-}
-/*    padding: 12px 25px;
-}*/
 
-.register{
+.asText{
     display: block;
     border-radius: 2px;
     background-color:  #6caee0;
     color: #ffffff;
     font-weight: bold;
     box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
-    padding: 14px 22px;
+    padding: 10px 12px;
     border: 0;
-    width: 50%;
-    margin: 0 auto;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    width: 80%;
+    -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
     cursor:pointer;
     text-align: center;
+    margin: 0 auto;
+
 }
-.register:hover{
+.asText:hover{
     background-color:  white;
     color: #6caee0;
 }
