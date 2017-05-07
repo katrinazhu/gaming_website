@@ -21,8 +21,8 @@ class StatisticsController extends Controller
     	$numberPersonnages = sizeof($allPersonnages);
     	$numberUsers=sizeof($allUsers);
     	// query for a single product by its primary key (usually "id")
-		$personnage = $repositoryPersonnages->findOneBy(array('name' => 'robot'));
-		$username = $personnage -> getUsername();
+		//$personnage = $repositoryPersonnages->findOneBy(array('name' => 'robot'));
+		//$username = $personnage -> getUsername();
 		// // dynamic method names to find a single product based on a column value
 		// $product = $repository->findOneById($productId);
 		// $product = $repository->findOneByName('Keyboard');

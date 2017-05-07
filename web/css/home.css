@@ -28,3 +28,8 @@ li {
     background-color: #4CAF50;
     color: white;
 }
+
+/* Style main content */
+.main-wrapper {
+    padding: 50px;
+}
