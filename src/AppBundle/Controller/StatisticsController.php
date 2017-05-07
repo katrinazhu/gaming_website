@@ -19,7 +19,11 @@ class StatisticsController extends Controller
             return $this->redirectToRoute('login');
         }
 
-        
+        // get current personnage and username
+        $personnageName = $_GET['name'];
+        $username = $request->getSession()->get('name');
+
+
     	$em = $this->getDoctrine()->getManager();
     	$repositoryPersonnages = $this->getDoctrine()->getRepository('AppBundle:Personnage');
     	$repositoryUsers = $this -> getDoctrine() -> getRepository('AppBundle:User');
@@ -48,7 +52,14 @@ class StatisticsController extends Controller
 
     	//$maxid= $query->getQuery()->getResult();
 		return $this->render('statistics/statistics.html.twig',
-            array('numPersonnages'=>$numberPersonnages, 'numUsers'=>$numberUsers, 'id' => $highest_id, 'personnage'=>$personnage->getName()));
+            array(
+                'numPersonnages' => $numberPersonnages, 
+                'numUsers' => $numberUsers, 'id' => $highest_id, 
+                'personnage' => $personnage->getName(),
+                'curr_personnage' => $personnageName,
+                'username' => $username
+            )
+        );
     }
 }
 ?>
