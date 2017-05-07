@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Crop;
 use AppBundle\Entity\Personnage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +28,9 @@ class StatisticsController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$repositoryPersonnages = $this->getDoctrine()->getRepository('AppBundle:Personnage');
     	$repositoryUsers = $this -> getDoctrine() -> getRepository('AppBundle:User');
+        $repositoryCrops = $this -> getDoctrine() -> getRepository('AppBundle:Crop');
+        $allCrops = $repositoryCrops -> findAll();
+        $numberCrops = sizeof($allCrops);
     	$allPersonnages = $repositoryPersonnages -> findAll();
     	$allUsers = $repositoryUsers -> findAll();
     	$numberPersonnages = sizeof($allPersonnages);
@@ -38,7 +42,6 @@ class StatisticsController extends Controller
 		$most_money=$query->getSingleScalarResult();
 		$personnage=$repositoryPersonnages->findOneBy(array('money'=>$most_money));
 
-    	//$maxid= $query->getQuery()->getResult();
 		return $this->render('statistics/statistics.html.twig',
             array(
                 'numPersonnages' => $numberPersonnages, 
@@ -46,7 +49,8 @@ class StatisticsController extends Controller
                 'personnage' => $personnage->getName(),
                 'rich_user' => $personnage->getUsername(),
                 'curr_personnage' => $personnageName,
-                'username' => $username
+                'username' => $username,
+                'crops' => $numberCrops
             )
         );
     }
