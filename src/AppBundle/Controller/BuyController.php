@@ -99,7 +99,7 @@ class BuyController extends Controller
         $personnage = $repository->findOneById($personnageID);
         $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
-        if ($money < 5){
+        if ($money < 10){
             return $this->render(
                 'buy/buy.html.twig',
                 array(
@@ -109,7 +109,7 @@ class BuyController extends Controller
             )
         );
         }
-        $personnage -> setMoney($money-5);
+        $personnage -> setMoney($money-10);
         $now = new \DateTime("now");
         $crop->setType('corn');
         $crop->setDateBought($now);
@@ -141,7 +141,7 @@ class BuyController extends Controller
         $personnage = $repository->findOneById($personnageID);
         $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
-        if ($money < 10){
+        if ($money < 50){
             return $this->render(
                 'buy/buy.html.twig',
                 array(
@@ -151,7 +151,7 @@ class BuyController extends Controller
             )
         );
         }
-        $personnage -> setMoney($money-10);
+        $personnage -> setMoney($money-50);
         // 2) handle the submit (will only happen on POST)
             // 4) deal with uploaded avatar file
             //date_default_timezone_set('France/Paris');
@@ -186,7 +186,7 @@ class BuyController extends Controller
         $personnage = $repository->findOneById($personnageID);
         $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
-        if ($money < 50){
+        if ($money < 150){
             return $this->render(
                 'buy/buy.html.twig',
                 array(
@@ -196,7 +196,7 @@ class BuyController extends Controller
             )
         );
         }
-        $personnage -> setMoney($money-50);
+        $personnage -> setMoney($money-150);
         // 2) handle the submit (will only happen on POST)
             // 4) deal with uploaded avatar file
             //date_default_timezone_set('France/Paris');
@@ -231,7 +231,7 @@ class BuyController extends Controller
         $personnage = $repository->findOneById($personnageID);
         $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
-        if ($money < 100){
+        if ($money < 500){
             return $this->render(
                 'buy/buy.html.twig',
                 array(
@@ -241,7 +241,7 @@ class BuyController extends Controller
             )
         );
         }
-            $personnage -> setMoney($money-100);
+            $personnage -> setMoney($money-500);
         // 2) handle the submit (will only happen on POST)
             // 4) deal with uploaded avatar file
             //date_default_timezone_set('France/Paris');

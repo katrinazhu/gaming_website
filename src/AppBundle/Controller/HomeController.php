@@ -80,13 +80,13 @@ class HomeController extends Controller
         if ($product->getType() == 'wheat') {
             $money += 2; 
         } else if ($product->getType() == 'corn') {
-            $money += 8; 
+            $money += 22; 
         } else if ($product->getType() == 'carrots') {
-            $money += 15; 
+            $money += 110; 
         } else if ($product->getType() == 'strawberries') {
-            $money += 75; 
+            $money += 350; 
         } else if ($product->getType() == 'watermelon') {
-            $money += 150; 
+            $money += 1500; 
         }
 
         $personnage->setMoney($money);
