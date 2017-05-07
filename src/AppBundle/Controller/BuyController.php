@@ -57,12 +57,14 @@ class BuyController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
         $personnage = $repository->findOneById($personnageID);
         $money = $personnage -> getMoney();
+        $personnageName = $personnage->getName();
         if ($money < 1){
             return $this->render(
                 'buy/buy.html.twig',
                 array(
                 'money' => $money,
-                'enough' => false
+                'enough' => false,
+                'personnage' => $personnageName
             )
         );
         }
@@ -95,13 +97,15 @@ class BuyController extends Controller
         $personnageID = $session -> get('id');
         $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
         $personnage = $repository->findOneById($personnageID);
+        $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
         if ($money < 5){
             return $this->render(
                 'buy/buy.html.twig',
                 array(
                 'money' => $money,
-                'enough' => false
+                'enough' => false,
+                'personnage' => $personnageName
             )
         );
         }
@@ -135,13 +139,15 @@ class BuyController extends Controller
         $personnageID = $session -> get('id');
         $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
         $personnage = $repository->findOneById($personnageID);
+        $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
         if ($money < 10){
             return $this->render(
                 'buy/buy.html.twig',
                 array(
                 'money' => $money,
-                'enough' => false
+                'enough' => false,
+                'personnage' => $personnageName
             )
         );
         }
@@ -178,13 +184,15 @@ class BuyController extends Controller
         $personnageID = $session -> get('id');
         $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
         $personnage = $repository->findOneById($personnageID);
+        $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
         if ($money < 50){
             return $this->render(
                 'buy/buy.html.twig',
                 array(
                 'money' => $money,
-                'enough' => false
+                'enough' => false,
+                'personnage' => $personnageName
             )
         );
         }
@@ -221,13 +229,15 @@ class BuyController extends Controller
         $personnageID = $session -> get('id');
         $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
         $personnage = $repository->findOneById($personnageID);
+        $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
         if ($money < 100){
             return $this->render(
                 'buy/buy.html.twig',
                 array(
                 'money' => $money,
-                'enough' => false
+                'enough' => false,
+                'personnage' => $personnageName
             )
         );
         }
