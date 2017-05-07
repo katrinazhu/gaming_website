@@ -150,4 +150,3 @@ class Crop
         return $timeLeft;
     }
 }
-

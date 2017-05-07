@@ -14,7 +14,7 @@ class DefaultController extends Controller
      */
     public function indexAction () {
     	//return $this->redirectToRoute('login');
-        return $this->redirectToRoute('statistics');
+        return $this->redirectToRoute('login');
     }
 }
 ?>
