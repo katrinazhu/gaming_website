@@ -13,20 +13,39 @@ class HomeController extends Controller
      * @Route("/home", name="home")
      */
     public function indexAction(Request $request) {
-        // initialize db repository
-        $repository = $this->getDoctrine()
-            ->getRepository('AppBundle:Crop');
+        // if not logged in, redirect to the login page
+        $securityContext = $this->container->get('security.authorization_checker');
+        if (! $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('login');
+        }
 
-        // find crops for the given personnage/username combination
+        // get username
+        $session = $request->getSession();
+        $username = $session->get('name');
+
+        // get current personnage
+        // $personRepo = $this->getDoctrine()
+        //     ->getRepository('AppBundle:Personnage');
+        $personnage = 'Java';
+
+        // find crops in db for the given personnage/username combination
         $personnageID = 0;
-        $crops = $repository->findBy(array('personnageID' => $personnageID));
+        $cropRepo = $this->getDoctrine()
+            ->getRepository('AppBundle:Crop');
+        $crops = $cropRepo->findBy(array('personnageID' => $personnageID));
 
+        // initialize current time
         date_default_timezone_set('Europe/Paris');
         $date = date('Y/m/d H:i:s');
 
         return $this->render(
             'default/home.html.twig',
-            array('crops' => $crops, 'date' => $date)
+            array(
+                'crops' => $crops, 
+                'date' => $date, 
+                'username' => $username,
+                'personnage' => $personnage
+            )
         );
     }
 }

@@ -13,6 +13,13 @@ class PersonnageController extends Controller
      * @Route("/personnage", name="personnage")
      */
     public function chooseAction(Request $request) {
+        // if not logged in, redirect to the login page
+        $securityContext = $this->container->get('security.authorization_checker');
+        if (! $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('login');
+        }
+
+
         // initialize db repository
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Personnage');
@@ -21,7 +28,7 @@ class PersonnageController extends Controller
         $session = $request->getSession();
         if(!is_string($usr)){
             $username=$usr->getUsername();
-            // // store an attribute for reuse during a later user request
+            // store an attribute for reuse during a later user request
             $session->set('name', $username);
         }
         // find personnages with given username
@@ -37,6 +44,13 @@ class PersonnageController extends Controller
      * @Route("/personnage/new", name="personnage_new")
      */
     public function newAction(Request $request) {
+        // if not logged in, redirect to the login page
+        $securityContext = $this->container->get('security.authorization_checker');
+        if (! $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('login');
+        }
+
+
         // 1) build the form
         $personnage = new Personnage();
         $form = $this->createForm(PersonnageType::class, $personnage);

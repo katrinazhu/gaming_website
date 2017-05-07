@@ -12,7 +12,14 @@ class SecurityController extends Controller
      */
     public function loginAction(Request $request)
     {
-	    $authenticationUtils = $this->get('security.authentication_utils');
+	    // if already logged in, redirect to the personnages page
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('personnage');
+        }
+
+
+        $authenticationUtils = $this->get('security.authentication_utils');
 	    // get the login error if there is one
 	    $error = $authenticationUtils->getLastAuthenticationError();
 	    $lastUsername = $authenticationUtils->getLastUsername();

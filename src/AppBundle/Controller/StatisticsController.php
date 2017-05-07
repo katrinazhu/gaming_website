@@ -13,6 +13,13 @@ class StatisticsController extends Controller
      * @Route("/statistics", name="statistics")
      */
     public function statisticsAction (Request $request) {
+        // if not logged in, redirect to the login page
+        $securityContext = $this->container->get('security.authorization_checker');
+        if (! $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('login');
+        }
+
+        
     	$em = $this->getDoctrine()->getManager();
     	$repositoryPersonnages = $this->getDoctrine()->getRepository('AppBundle:Personnage');
     	$repositoryUsers = $this -> getDoctrine() -> getRepository('AppBundle:User');
