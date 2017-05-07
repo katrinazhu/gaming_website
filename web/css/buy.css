@@ -117,3 +117,16 @@ li {
     background-color:  white;
     color: #6caee0;
 }
+
+footer {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: .7rem;
+    background-color: white;
+    text-align: center;
+}

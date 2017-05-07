@@ -25,6 +25,7 @@ class BuyController extends Controller
         }
         #get personnage
         $session = $request->getSession();
+        $username = $session -> get('name');
         $personnageID = $session -> get('id');
         $repositoryPersonnage = $this->getDoctrine()
             ->getRepository('AppBundle:Personnage');
@@ -37,7 +38,8 @@ class BuyController extends Controller
             array(
                 'money' => $money,
                 'enough' => $enough_money,
-                'personnage' => $personnageName
+                'personnage' => $personnageName,
+                'username' => $username
             )
         );
     }
@@ -53,6 +55,7 @@ class BuyController extends Controller
         // 1) build the form
         $crop = new Crop();
         $session = $request->getSession();
+        $username = $session -> get('name');
         $personnageID = $session -> get('id');
         $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
         $personnage = $repository->findOneById($personnageID);
@@ -64,7 +67,8 @@ class BuyController extends Controller
                 array(
                 'money' => $money,
                 'enough' => false,
-                'personnage' => $personnageName
+                'personnage' => $personnageName,
+                'username' => $username
             )
         );
         }
@@ -94,6 +98,7 @@ class BuyController extends Controller
         // 1) build the form
         $crop = new Crop();
         $session = $request->getSession();
+        $username = $session -> get('name');
         $personnageID = $session -> get('id');
         $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
         $personnage = $repository->findOneById($personnageID);
@@ -105,7 +110,8 @@ class BuyController extends Controller
                 array(
                 'money' => $money,
                 'enough' => false,
-                'personnage' => $personnageName
+                'personnage' => $personnageName,
+                'username' => $username
             )
         );
         }
@@ -136,6 +142,7 @@ class BuyController extends Controller
         // 1) build the form
         $crop = new Crop();
         $session = $request->getSession();
+        $username = $session -> get('name');
         $personnageID = $session -> get('id');
         $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
         $personnage = $repository->findOneById($personnageID);
@@ -147,7 +154,8 @@ class BuyController extends Controller
                 array(
                 'money' => $money,
                 'enough' => false,
-                'personnage' => $personnageName
+                'personnage' => $personnageName,
+                'username' => $username
             )
         );
         }
@@ -181,6 +189,7 @@ class BuyController extends Controller
         // 1) build the form
         $crop = new Crop();
         $session = $request->getSession();
+        $username = $session -> get('name');
         $personnageID = $session -> get('id');
         $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
         $personnage = $repository->findOneById($personnageID);
@@ -192,7 +201,8 @@ class BuyController extends Controller
                 array(
                 'money' => $money,
                 'enough' => false,
-                'personnage' => $personnageName
+                'personnage' => $personnageName,
+                'username' => $username
             )
         );
         }
@@ -226,6 +236,7 @@ class BuyController extends Controller
         // 1) build the form
         $crop = new Crop();
         $session = $request->getSession();
+        $username = $session -> get('name');
         $personnageID = $session -> get('id');
         $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
         $personnage = $repository->findOneById($personnageID);
@@ -237,7 +248,8 @@ class BuyController extends Controller
                 array(
                 'money' => $money,
                 'enough' => false,
-                'personnage' => $personnageName
+                'personnage' => $personnageName,
+                'username' => $username
             )
         );
         }

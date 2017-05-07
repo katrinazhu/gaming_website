@@ -42,7 +42,7 @@ header{
     }
 .main-wrapper {
     padding-top: 60px;
-
+    margin-bottom: 75px;
 }
 .avatar-img {
     max-height: 200px;
@@ -73,7 +73,7 @@ button:hover{
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
