@@ -35,6 +35,7 @@ class HomeController extends Controller
         $personnage = $repositoryPersonnage->findOneBy(
             array('name' => $personnageName, 'username' => $username)
         );
+        $money = $personnage->getMoney();
         $personnageID = $personnage->getID();
         $session -> set('id', $personnageID);
         $crops = $repositoryCrop->findBy(array('personnageID' => $personnageID));
@@ -42,17 +43,14 @@ class HomeController extends Controller
         // initialize current time
         $date = new \DateTime("now");
 
-        // return $this->render(
-        //     'base.html.twig',
-        //     array('crops' => $crops, 'date' => $date, 'id' => $personnageID)
-        // );
         return $this->render(
             'default/home.html.twig',
             array(
                 'crops' => $crops, 
                 'date' => $date, 
                 'username' => $username,
-                'personnage' => $personnageName
+                'personnage' => $personnageName,
+                'money' => $money
             )
         );
     }
@@ -72,8 +70,28 @@ class HomeController extends Controller
 
         $em = $this->getDoctrine()->getEntityManager();
         $cropRepository = $em->getRepository('AppBundle:Crop');
+        $personnageRepository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
 
         $product = $cropRepository->findOneBy(array('id' => $cropid));
+        $personnage = $personnageRepository->findOneBy(array('name' => $personnageName));
+        $money = $personnage->getMoney();
+
+        // earn money depending on type of crop
+        if ($product->getType() == 'wheat') {
+            $money += 2; 
+        } else if ($product->getType() == 'corn') {
+            $money += 8; 
+        } else if ($product->getType() == 'carrots') {
+            $money += 15; 
+        } else if ($product->getType() == 'strawberries') {
+            $money += 75; 
+        } else if ($product->getType() == 'watermelon') {
+            $money += 150; 
+        }
+
+        $personnage->setMoney($money);
+
+        // remove this row from database
         $em->remove($product);
         $em->flush();
 

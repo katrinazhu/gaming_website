@@ -19,7 +19,7 @@
 
     <div class="main-wrapper">
         <h4>Ready to Harvest</h4>
-        <h5> In your bank: 0 euro(s)</h5>
+        <h5> In your bank: {{money}} euro(s)</h5>
         <div class="list-wrapper">
             {% for crop in crops %}
                 {% if crop.now > crop.harvestDate %}
