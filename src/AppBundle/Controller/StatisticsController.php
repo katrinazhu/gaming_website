@@ -31,31 +31,20 @@ class StatisticsController extends Controller
     	$allUsers = $repositoryUsers -> findAll();
     	$numberPersonnages = sizeof($allPersonnages);
     	$numberUsers=sizeof($allUsers);
-    	// query for a single product by its primary key (usually "id")
-		//$personnage = $repositoryPersonnages->findOneBy(array('name' => 'robot'));
-		//$username = $personnage -> getUsername();
-		// // dynamic method names to find a single product based on a column value
-		// $product = $repository->findOneById($productId);
-		// $product = $repository->findOneByName('Keyboard');
-
-		// // dynamic method names to find a group of products based on a column value
-		// $products = $repository->findByPrice(19.99);
-
-		// // find *all* products
-		// $products = $repository->findAll();
 		$query = $em->createQueryBuilder()
-		    ->select('MAX(e.id)')
+		    ->select('MAX(e.money)')
 		    ->from('AppBundle:Personnage', 'e')
 		    ->getQuery();
-		$highest_id=$query->getSingleScalarResult();
-		$personnage=$repositoryPersonnages->findOneBy(array('id'=>$highest_id));
+		$most_money=$query->getSingleScalarResult();
+		$personnage=$repositoryPersonnages->findOneBy(array('money'=>$most_money));
 
     	//$maxid= $query->getQuery()->getResult();
 		return $this->render('statistics/statistics.html.twig',
             array(
                 'numPersonnages' => $numberPersonnages, 
-                'numUsers' => $numberUsers, 'id' => $highest_id, 
+                'numUsers' => $numberUsers, 'money' => $most_money, 
                 'personnage' => $personnage->getName(),
+                'rich_user' => $personnage->getUsername(),
                 'curr_personnage' => $personnageName,
                 'username' => $username
             )
