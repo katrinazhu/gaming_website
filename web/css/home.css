@@ -31,6 +31,8 @@ li {
     padding: 50px 50px 0px 50px;
     margin-left: 275px;
     margin-right: 275px;
+    margin-bottom: 100px;
+    position: relative;
 }
     .main-wrapper h4 {
         text-align: center;
