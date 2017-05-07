@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Crop
@@ -10,8 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity()
  * @ORM\Table(name="crop")
  */
-class Crop
-{
+class Crop {
     /**
      * @var int
      *
@@ -42,7 +42,14 @@ class Crop
      */
     private $personnageID;
 
+    protected $harvestDate;
     protected $timeLeft;
+    protected $now;
+
+    // constructor initializes timestamp of dateBought
+    public function __construct() {
+        $this->getDateBought(new \DateTime());
+    }
 
 
     /**
@@ -50,8 +57,7 @@ class Crop
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -62,8 +68,7 @@ class Crop
      *
      * @return Crop
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
 
         return $this;
@@ -74,8 +79,7 @@ class Crop
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -86,8 +90,7 @@ class Crop
      *
      * @return Crop
      */
-    public function setDateBought($dateBought)
-    {
+    public function setDateBought($dateBought) {
         $this->dateBought = $dateBought;
 
         return $this;
@@ -98,8 +101,7 @@ class Crop
      *
      * @return \DateTime
      */
-    public function getDateBought()
-    {
+    public function getDateBought() {
         return $this->dateBought;
     }
 
@@ -110,8 +112,7 @@ class Crop
      *
      * @return Crop
      */
-    public function setPersonnageID($personnageID)
-    {
+    public function setPersonnageID($personnageID) {
         $this->personnageID = $personnageID;
 
         return $this;
@@ -122,9 +123,35 @@ class Crop
      *
      * @return int
      */
-    public function getPersonnageID()
-    {
+    public function getPersonnageID() {
         return $this->personnageID;
+    }
+
+    public function getHarvestTime() {
+        if ($this->getType() == 'wheat') {
+            return '+1 minute';
+        } else if ($this->getType() == 'corn') {
+            return '+5 minutes';
+        } else if ($this->getType() == 'carrots') {
+            return '+30 minutes';
+        } else if ($this->getType() == 'strawberries') {
+            return '+1 hour';
+        } else if ($this->getType() == 'watermelon') {
+            return '+3 hours';
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Get harvestDate
+     *
+     * @return \DateTime
+     */
+    public function getHarvestDate() {
+        $harvestDate = clone $this->getDateBought();
+        $harvestDate->modify($this->getHarvestTime());
+        return $harvestDate;
     }
 
     /**
@@ -132,21 +159,25 @@ class Crop
      *
      * @return \DateTime
      */
-    public function timeLeft()
-    {
-        // TODO: modify harvestTime
-        $harvestTime = '+5 minutes';
-
-        // calculate date when this crop will harvest
-        $harvestDate = DateTime::createFromFormat('Y-m-d H:i:s', $this->getDateBought());
-        $harvestDate->modify($harvestTime);
+    public function timeLeft() {
+        $harvestDate = clone $this->getDateBought();
+        $timestamp = $this->getDateBought();
+        $harvestDate->modify($this->getHarvestTime());
 
         // find current time
-        date_default_timezone_set('France/Paris');
-        $now = new DateTime();
+        $now = new \DateTime("now");
 
         // calculate and return time left
         $timeLeft = $harvestDate->diff($now);
         return $timeLeft;
+    }
+
+    /**
+     * Get now
+     *
+     * @return \DateTime
+     */
+    public function getNow() {
+        return new \DateTime("now");
     }
 }

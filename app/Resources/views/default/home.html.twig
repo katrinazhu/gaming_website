@@ -21,18 +21,24 @@
         <h4>Ready to Harvest</h4>
         <div class="row">
             <div class="col-xs-6">
-                <ul>Type</ul>
-            </div>
-            <div class="col-xs-6">
-                <ul>Time Left Until Harvest</ul>
+                <ul><b>Type</b></ul>
             </div>
         </div>
         {% for crop in crops %}
-            {% if crop.timeLeft <= 0 %}
+            {% if crop.now > crop.harvestDate %}
                 <div class="row">
                     <div class="col-xs-6">
                         <ul>{{crop.type}}</ul>
                     </div>
+                    <div class="col-xs-6">
+                        <form class="form-basic" action="/home/harvest?name={{personnage}}&cropid={{crop.id}}" method="post">
+                            <button class="asText" type="submit">Harvest</button>
+                        </form>
+                    </div>
+                    <!-- <div class="col-xs-6">
+                        <ul>{{crop.dateBought|date('Y-m-d H:i:s')}}</ul>
+                        <ul>{{crop.harvestDate|date('Y-m-d H:i:s')}}</ul>
+                    </div> -->
                 </div>
             {% endif %}
         {% endfor %}
@@ -42,20 +48,20 @@
         <h4>Growing Crops</h4>
         <div class="row">
             <div class="col-xs-6">
-                <ul>Type</ul>
+                <ul><b>Type</b></ul>
             </div>
             <div class="col-xs-6">
-                <ul>Time Left Until Harvest</ul>
+                <ul><b>Time Left Until Harvest</b></ul>
             </div>
         </div>
         {% for crop in crops %}
-            {% if crop.timeLeft > 0 %}
+            {% if crop.now < crop.harvestDate %}
                 <div class="row">
                     <div class="col-xs-6">
                         <ul>{{crop.type}}</ul>
                     </div>
                     <div class="col-xs-6">
-                        <ul>{{crop.dateBought}}</ul>
+                        <ul>{{crop.timeLeft|date("%h hours, %i minutes, %s seconds ")}}</ul>
                     </div>
                 </div>
             {% endif %}

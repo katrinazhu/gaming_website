@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Crop
@@ -43,6 +44,11 @@ class Crop
     private $personnageID;
 
     protected $timeLeft;
+
+    // constructor initializes timestamp of dateBought
+    public function __construct(){
+        $this->dateBought(new \DateTime());
+    }
 
 
     /**
@@ -134,16 +140,11 @@ class Crop
      */
     public function timeLeft()
     {
-        // TODO: modify harvestTime
-        $harvestTime = '+5 minutes';
-
-        // calculate date when this crop will harvest
-        $harvestDate = DateTime::createFromFormat('Y-m-d H:i:s', $this->getDateBought());
-        $harvestDate->modify($harvestTime);
+        $harvestDate = $this->getDateBought();
+        $harvestDate->modify('+5 minutes');
 
         // find current time
-        date_default_timezone_set('France/Paris');
-        $now = new DateTime();
+        $now = new \DateTime("now");
 
         // calculate and return time left
         $timeLeft = $harvestDate->diff($now);

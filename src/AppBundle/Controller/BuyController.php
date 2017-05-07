@@ -23,17 +23,21 @@ class BuyController extends Controller
         if (! $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirectToRoute('login');
         }
+        #get personnage
         $session = $request->getSession();
         $personnageID = $session -> get('id');
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Personnage');
-        $personnage = $repository->findOneById($personnageID);
+        $repositoryPersonnage = $this->getDoctrine()
+            ->getRepository('AppBundle:Personnage');
+        $personnage = $repositoryPersonnage->findOneById($personnageID);
+        $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
         $enough_money=true;
         return $this->render(
             'buy/buy.html.twig',
             array(
                 'money' => $money,
-                'enough' => $enough_money
+                'enough' => $enough_money,
+                'personnage' => $personnageName
             )
         );
     }

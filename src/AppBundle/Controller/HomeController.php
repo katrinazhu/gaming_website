@@ -5,6 +5,7 @@ use AppBundle\Entity\Crop;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class HomeController extends Controller
 {
@@ -39,8 +40,7 @@ class HomeController extends Controller
         $crops = $repositoryCrop->findBy(array('personnageID' => $personnageID));
 
         // initialize current time
-        date_default_timezone_set('Europe/Paris');
-        $date = date('Y/m/d H:i:s');
+        $date = new \DateTime("now");
 
         // return $this->render(
         //     'base.html.twig',
@@ -55,6 +55,29 @@ class HomeController extends Controller
                 'personnage' => $personnageName
             )
         );
+    }
+
+    /**
+     * @Route("/home/harvest", name="harvest")
+     */
+    public function harvestAction(Request $request) {
+        // if not logged in, redirect to the login page
+        $securityContext = $this->container->get('security.authorization_checker');
+        if (! $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('login');
+        }
+
+        $personnageName = $_GET['name'];
+        $cropid = $_GET['cropid'];
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $cropRepository = $em->getRepository('AppBundle:Crop');
+
+        $product = $cropRepository->findOneBy(array('id' => $cropid));
+        $em->remove($product);
+        $em->flush();
+
+        return $this->redirectToRoute('home', array('name' => $personnageName));        
     }
 }
 ?>
