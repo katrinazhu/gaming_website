@@ -68,7 +68,7 @@ class PersonnageController extends Controller
             $session = $request->getSession();
             $username = $session->get('name');
             $personnage->setUsername($username);
-
+            $personnage->setMoney(1);
             // 4) deal with uploaded avatar file
 
             // $file stores the uploaded PDF file

@@ -44,12 +44,18 @@ class Personnage
      */
     private $avatar;
 
-
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="money", type="integer")
+     */
+    private $money;
     /**
      * Get id
      *
      * @return int
      */
+
     public function getId()
     {
         return $this->id;
@@ -126,5 +132,22 @@ class Personnage
     {
         return $this->avatar;
     }
-}
+    /**
+     * Get money
+     *
+     * @return int
+     */
+    public function getMoney(){
+        return $this->money;
+    }
+    /**
+     * Set avatar
+     *
+     * @return Personnage
+     */
+    public function setMoney($money){
+        $this->money = $money;
 
+        return $this;
+    }
+}

@@ -5,11 +5,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/buy.css') }}" />
 </head>
 <body>
-
+        {% if not enough %}
+            <div>Not enough money; failed to buy crop.</div>
+        {% endif %}
         <div class="form-basic">
             <div class="form-title-row">
                 <h1>Buy Crops</h1>
             </div>
+            <h2> In your bank: {{money}} euro(s)</h2>
             <div id="first">
                 <form class="form-row" action=" {{ path('wheat') }} " method="post">
                     <p id="title">Wheat</p>
