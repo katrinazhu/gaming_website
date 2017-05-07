@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/buy.css') }}" />
+</head>
+<body>
+    <div class="form-basic">
+        <div class="form-title-row">
+            <h1>Buy Crops</h1>
+        </div>
+        <form class="form-basic" action=" {{ path('wheat') }} " method="post">
+            <button class="asText" type="submit">Buy Wheat</button>
+        </form>
+        <form class="form-basic" action=" {{ path('corn') }} " method="post">
+            <button class="asText" type="submit">Buy Corn</button>
+        </form>
+        <form class="form-basic" action=" {{ path('carrots') }} " method="post">
+            <button class="asText" type="submit">Buy Carrots</button>
+        </form>
+        <form class="form-basic" action=" {{ path('strawberries') }} " method="post">
+            <button class="asText" type="submit">Buy Strawberries</button>
+        </form>
+        <form class="form-basic" action=" {{ path('watermelon') }} " method="post">
+            <button class="asText" type="submit">Buy Watermelon</button>
+        </form>
+    </div>
+</body>
+</html>

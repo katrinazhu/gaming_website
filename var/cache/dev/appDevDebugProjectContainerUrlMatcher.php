@@ -105,6 +105,39 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // buy
+        if ($pathinfo === '/buy') {
+            return array (  '_controller' => 'AppBundle\\Controller\\BuyController::buyAction',  '_route' => 'buy',);
+        }
+
+        // wheat
+        if ($pathinfo === '/wheat') {
+            return array (  '_controller' => 'AppBundle\\Controller\\BuyController::wheatAction',  '_route' => 'wheat',);
+        }
+
+        if (0 === strpos($pathinfo, '/c')) {
+            // corn
+            if ($pathinfo === '/corn') {
+                return array (  '_controller' => 'AppBundle\\Controller\\BuyController::cornAction',  '_route' => 'corn',);
+            }
+
+            // carrots
+            if ($pathinfo === '/carrots') {
+                return array (  '_controller' => 'AppBundle\\Controller\\BuyController::carrotsAction',  '_route' => 'carrots',);
+            }
+
+        }
+
+        // strawberries
+        if ($pathinfo === '/strawberries') {
+            return array (  '_controller' => 'AppBundle\\Controller\\BuyController::strawberryAction',  '_route' => 'strawberries',);
+        }
+
+        // watermelon
+        if ($pathinfo === '/watermelon') {
+            return array (  '_controller' => 'AppBundle\\Controller\\BuyController::watermelonAction',  '_route' => 'watermelon',);
+        }
+
         // homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
