@@ -38,7 +38,11 @@ class PersonnageController extends Controller
 
         // render page displaying past personnages + option to create a new one
         return $this->render('personnage/personnage.html.twig',
-            array('personnages' => $personnages));
+            array(
+                'personnages' => $personnages,
+                'username' => $username
+            )
+        );
     }
 
     /**

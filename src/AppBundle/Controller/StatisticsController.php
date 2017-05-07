@@ -18,8 +18,11 @@ class StatisticsController extends Controller
         if (! $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirectToRoute('login');
         }
-        // get current personnage
+
+        // get current personnage and username
         $personnageName = $_GET['name'];
+        $username = $request->getSession()->get('name');
+
 
     	$em = $this->getDoctrine()->getManager();
     	$repositoryPersonnages = $this->getDoctrine()->getRepository('AppBundle:Personnage');
@@ -53,7 +56,8 @@ class StatisticsController extends Controller
                 'numPersonnages' => $numberPersonnages, 
                 'numUsers' => $numberUsers, 'id' => $highest_id, 
                 'personnage' => $personnage->getName(),
-                'curr_personnage' => $personnageName
+                'curr_personnage' => $personnageName,
+                'username' => $username
             )
         );
     }
