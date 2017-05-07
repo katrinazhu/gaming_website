@@ -5,6 +5,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/buy.css') }}" />
 </head>
 <body>
+    <div class="topnav" id="myTopnav">
+        <a href="/home?name={{personnage}}" style="float:left">Crops Calendar</a>
+        <a href="{{ path('buy') }}" style="float:left">Buy Crops</a>
+        <a href="/statistics?name={{personnage}}" style="float:left">Statistics</a>
+        <a href="{{ path('personnage') }}" style="float:left">Personnages</a>
+        <a href="{{ path('logout') }}" style="float:right">Logout</a>
+    </div>
+
     <div class="form-basic">
         <div class="form-title-row">
             <h1>Buy Crops</h1>

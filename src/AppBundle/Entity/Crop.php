@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Crop
@@ -42,7 +43,14 @@ class Crop
      */
     private $personnageID;
 
+    protected $harvestDate;
     protected $timeLeft;
+    protected $now;
+
+    // constructor initializes timestamp of dateBought
+    public function __construct(){
+        $this->getDateBought(new \DateTime());
+    }
 
 
     /**
@@ -128,25 +136,41 @@ class Crop
     }
 
     /**
+     * Get harvestDate
+     *
+     * @return \DateTime
+     */
+    public function getHarvestDate() {
+        $harvestDate = clone $this->getDateBought();
+        $harvestDate->modify('+1 minute');
+        return $harvestDate;
+    }
+
+    /**
      * Get timeLeft
      *
      * @return \DateTime
      */
     public function timeLeft()
     {
-        // TODO: modify harvestTime
-        $harvestTime = '+5 minutes';
-
-        // calculate date when this crop will harvest
-        $harvestDate = DateTime::createFromFormat('Y-m-d H:i:s', $this->getDateBought());
-        $harvestDate->modify($harvestTime);
+        $harvestDate = clone $this->getDateBought();
+        $timestamp = $this->getDateBought();
+        $harvestDate->modify('+1 minute');
 
         // find current time
-        date_default_timezone_set('France/Paris');
-        $now = new DateTime();
+        $now = new \DateTime("now");
 
         // calculate and return time left
         $timeLeft = $harvestDate->diff($now);
         return $timeLeft;
+    }
+
+    /**
+     * Get now
+     *
+     * @return \DateTime
+     */
+    public function getNow() {
+        return new \DateTime("now");
     }
 }

@@ -23,9 +23,19 @@ class BuyController extends Controller
         if (! $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirectToRoute('login');
         }
+
+        # get personnage
+        $session = $request->getSession();
+        $personnageID = $session -> get('id');
+        $repositoryPersonnage = $this->getDoctrine()
+            ->getRepository('AppBundle:Personnage');
+        $personnage = $repositoryPersonnage->findOneBy(
+            array('id' => $personnageID)
+        );
+        $personnageName = $personnage->getName();
         
         return $this->render(
-            'buy/buy.html.twig'
+            'buy/buy.html.twig', array('personnage' => $personnageName)
         );
     }
     /**
