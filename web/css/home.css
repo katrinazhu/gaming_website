@@ -5,8 +5,10 @@
 }
 
 /* Style the links inside the navigation bar */
-.topnav a {
+li {
     float: left;
+}
+.topnav a {
     display: block;
     color: #f2f2f2;
     text-align: center;
@@ -25,4 +27,9 @@
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
+}
+
+/* Style main content */
+.main-wrapper {
+    padding: 50px;
 }
