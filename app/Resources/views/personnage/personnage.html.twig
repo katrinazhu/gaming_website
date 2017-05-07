@@ -20,7 +20,7 @@
                 <div class="person col-md-3" align="center">
                     <img class="avatar-img" src="{{ asset('uploads/avatars/' ~ person.avatar) }}" alt="avatar">
                     <br>
-                    <a href="{{ path('home') }}" class="name"> {{ person.name }} </a>
+                    <a href="/home?name={{person.name}}" class="name"> {{ person.name }} </a>
                     <br><br>
                 </div>
             {% endfor %}

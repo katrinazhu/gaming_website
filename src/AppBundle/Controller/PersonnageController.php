@@ -32,6 +32,7 @@ class PersonnageController extends Controller
             $session->set('name', $username);
         }
         // find personnages with given username
+        //$session->set('personnage_id', )
         $username = $session->get('name');
         $personnages = $repository->findBy(array('username' => $username));
 
