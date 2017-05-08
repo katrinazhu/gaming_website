@@ -23,7 +23,7 @@ class BuyController extends Controller
         if (! $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirectToRoute('login');
         }
-        #get personnage
+        // get session and personnage information
         $session = $request->getSession();
         $username = $session -> get('name');
         $personnageID = $session -> get('id');
@@ -33,6 +33,7 @@ class BuyController extends Controller
         $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
         $enough_money=true;
+        // render the buy page, sending over personnage information
         return $this->render(
             'buy/buy.html.twig',
             array(
@@ -54,6 +55,7 @@ class BuyController extends Controller
         }
         // 1) build the form
         $crop = new Crop();
+        // get session and personnage information
         $session = $request->getSession();
         $username = $session -> get('name');
         $personnageID = $session -> get('id');
@@ -61,7 +63,9 @@ class BuyController extends Controller
         $personnage = $repository->findOneById($personnageID);
         $money = $personnage -> getMoney();
         $personnageName = $personnage->getName();
+        // check if personnage has enough money to buy
         if ($money < 1){
+            // return the user to the buy page with an error message
             return $this->render(
                 'buy/buy.html.twig',
                 array(
@@ -72,18 +76,19 @@ class BuyController extends Controller
             )
         );
         }
-            $personnage -> setMoney($money-1);
-            $now = new \DateTime("now");
-            $crop->setType('wheat');
-            $crop->setDateBought($now);
-            $session = $request->getSession();
-            $personnageID = $session -> get('id');
-            $crop->setPersonnageID($personnageID);  
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($crop);
-            $em->flush();
-
-            return $this->redirectToRoute('buy');
+        // update information upon crop bought
+        $personnage -> setMoney($money-1);
+        $now = new \DateTime("now");
+        $crop->setType('wheat');
+        $crop->setDateBought($now);
+        $session = $request->getSession();
+        $personnageID = $session -> get('id');
+        $crop->setPersonnageID($personnageID);  
+        // update crop database
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($crop);
+        $em->flush();
+        return $this->redirectToRoute('buy');
         
     }
     /**
@@ -97,6 +102,7 @@ class BuyController extends Controller
         }
         // 1) build the form
         $crop = new Crop();
+        // get session and personnage information
         $session = $request->getSession();
         $username = $session -> get('name');
         $personnageID = $session -> get('id');
@@ -104,7 +110,9 @@ class BuyController extends Controller
         $personnage = $repository->findOneById($personnageID);
         $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
+        // check if personnage has enough money to buy
         if ($money < 10){
+            // return the user to the buy page with an error message
             return $this->render(
                 'buy/buy.html.twig',
                 array(
@@ -115,6 +123,7 @@ class BuyController extends Controller
             )
         );
         }
+        // update information upon crop bought
         $personnage -> setMoney($money-10);
         $now = new \DateTime("now");
         $crop->setType('corn');
@@ -122,11 +131,10 @@ class BuyController extends Controller
         $session = $request->getSession();
         $personnageID = $session -> get('id');
         $crop->setPersonnageID($personnageID);
-        // 5) save the User!
+        // update crop database
         $em = $this->getDoctrine()->getManager();
         $em->persist($crop);
         $em->flush();
-
         return $this->redirectToRoute('buy');
         
     }
@@ -141,6 +149,7 @@ class BuyController extends Controller
         }
         // 1) build the form
         $crop = new Crop();
+        // get session and personnage information
         $session = $request->getSession();
         $username = $session -> get('name');
         $personnageID = $session -> get('id');
@@ -148,7 +157,9 @@ class BuyController extends Controller
         $personnage = $repository->findOneById($personnageID);
         $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
+        // check if personnage has enough money to buy
         if ($money < 50){
+            // return the user to the buy page with an error message
             return $this->render(
                 'buy/buy.html.twig',
                 array(
@@ -159,17 +170,15 @@ class BuyController extends Controller
             )
         );
         }
+        // update information upon crop bought
         $personnage -> setMoney($money-50);
-        // 2) handle the submit (will only happen on POST)
-            // 4) deal with uploaded avatar file
-            //date_default_timezone_set('France/Paris');
         $now = new \DateTime("now");
         $crop->setType('carrots');
         $crop->setDateBought($now);
         $session = $request->getSession();
         $personnageID = $session -> get('id');
         $crop->setPersonnageID($personnageID);
-        // 5) save the User!
+        // update crop database
         $em = $this->getDoctrine()->getManager();
         $em->persist($crop);
         $em->flush();
@@ -188,6 +197,7 @@ class BuyController extends Controller
         }
         // 1) build the form
         $crop = new Crop();
+        // get session and personnage information
         $session = $request->getSession();
         $username = $session -> get('name');
         $personnageID = $session -> get('id');
@@ -195,7 +205,9 @@ class BuyController extends Controller
         $personnage = $repository->findOneById($personnageID);
         $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
+        // check if personnage has enough money to buy
         if ($money < 150){
+            // return the user to the buy page with an error message
             return $this->render(
                 'buy/buy.html.twig',
                 array(
@@ -206,17 +218,15 @@ class BuyController extends Controller
             )
         );
         }
+        // update information upon crop bought
         $personnage -> setMoney($money-150);
-        // 2) handle the submit (will only happen on POST)
-            // 4) deal with uploaded avatar file
-            //date_default_timezone_set('France/Paris');
         $now = new \DateTime("now");
         $crop->setType('strawberries');
         $crop->setDateBought($now);
         $session = $request->getSession();
         $personnageID = $session -> get('id');
         $crop->setPersonnageID($personnageID);
-        // 5) save the User!
+        // update crop database
         $em = $this->getDoctrine()->getManager();
         $em->persist($crop);
         $em->flush();
@@ -235,6 +245,7 @@ class BuyController extends Controller
         }
         // 1) build the form
         $crop = new Crop();
+        // get session and personnage information
         $session = $request->getSession();
         $username = $session -> get('name');
         $personnageID = $session -> get('id');
@@ -242,7 +253,9 @@ class BuyController extends Controller
         $personnage = $repository->findOneById($personnageID);
         $personnageName = $personnage->getName();
         $money = $personnage -> getMoney();
+        // check if personnage has enough money to buy
         if ($money < 500){
+            // return the user to the buy page with an error message
             return $this->render(
                 'buy/buy.html.twig',
                 array(
@@ -253,17 +266,15 @@ class BuyController extends Controller
             )
         );
         }
-            $personnage -> setMoney($money-500);
-        // 2) handle the submit (will only happen on POST)
-            // 4) deal with uploaded avatar file
-            //date_default_timezone_set('France/Paris');
+        // update information upon crop bought
+        $personnage -> setMoney($money-500);
         $now = new \DateTime("now");
         $crop->setType('watermelon');
         $crop->setDateBought($now);
         $session = $request->getSession();
         $personnageID = $session -> get('id');
         $crop->setPersonnageID($personnageID);
-        // 5) save the User!
+        // update crop database
         $em = $this->getDoctrine()->getManager();
         $em->persist($crop);
         $em->flush();
